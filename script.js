@@ -1,5 +1,17 @@
 let bookings = [];
 
+const saveBookings = () => {
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+};
+
+const loadBookings = () => {
+    const savedBookings = localStorage.getItem('bookings');
+
+    if (savedBookings) {
+        bookings = JSON.parse(savedBookings);
+    }
+};
+
 const calculateTotal = () => {
     return bookings.reduce((sum, item) => sum + item.price, 0);
 };
@@ -34,6 +46,7 @@ const updateBookingDisplay = () => {
         button.addEventListener('click', (e) => {
             const index = parseInt(e.target.dataset.index);
             bookings.splice(index, 1);
+            saveBookings();
             updateBookingDisplay();
         });
     });
@@ -44,7 +57,10 @@ const addToBooking = (ticket) => {
         name: ticket.name,
         price: ticket.price
     });
+
+    saveBookings();
     updateBookingDisplay();
+
     alert(`✅ Билет в ${ticket.name} добавлен в бронирования!`);
 };
 
@@ -53,9 +69,12 @@ const handleCheckout = () => {
         alert('❌ Нет забронированных билетов! Добавьте города для бронирования.');
         return;
     }
+
     const total = calculateTotal();
     alert(`✅ Бронирование оформлено! Общая стоимость: ${total} €. Хорошего путешествия!`);
+
     bookings = [];
+    saveBookings();
     updateBookingDisplay();
 };
 
@@ -72,6 +91,9 @@ const filterProducts = (category) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    loadBookings();
+    updateBookingDisplay();
+
     const addButtons = document.querySelectorAll('.add-to-cart');
     addButtons.forEach(button => {
         button.addEventListener('click', (e) => {
