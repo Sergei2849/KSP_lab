@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог городов</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .filter-buttons { margin: 20px 0; }
+        .filter-btn {
+            background: rgb(52, 73, 94);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .filter-btn.active { background: rgb(41, 128, 185); }
+        .products-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            width: 250px;
+            background: white;
+        }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .add-to-cart {
+            background: rgb(46, 204, 113);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .cart {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            background: white;
+            margin-top: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .remove-item {
+            background: rgb(231, 76, 60);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checkout-btn {
+            background: rgb(241, 196, 15);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1> Города мира</h1>
+    <ul class="menu">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+    </ul>
+</header>
+
+<hr>
+
+<h1>Выберите направление</h1>
+
+<div class="filter-buttons">
+    <button class="filter-btn active" data-category="all">Все</button>
+    <button class="filter-btn" data-category="europe">Европа</button>
+    <button class="filter-btn" data-category="asia">Азия</button>
+</div>
+
+<div class="products-grid">
+    <div class="product-card" data-category="europe" data-name="Париж" data-price="250">
+        <a href="paris.html">
+            <img src="img/paris.jpeg" alt="Париж">
+        </a>
+        <h3>Париж, Франция</h3>
+        <p>Билет: 250 €</p>
+        <button class="add-to-cart">Забронировать билет</button>
+        <br><a href="paris.html">Подробнее о городе</a>
+    </div>
+    <div class="product-card" data-category="asia" data-name="Токио" data-price="350">
+        <a href="tokyo.html">
+            <img src="img/tokyo.jpeg" alt="Токио">
+        </a>
+        <h3>Токио, Япония</h3>
+        <p>Билет: 350 €</p>
+        <button class="add-to-cart">Забронировать билет</button>
+        <br><a href="tokyo.html">Подробнее о городе</a>
+    </div>
+    <div class="product-card" data-category="europe" data-name="Рим" data-price="220">
+        <a href="rome.html">
+            <img src="img/rome.jpeg" alt="Рим">
+        </a>
+        <h3>Рим, Италия</h3>
+        <p>Билет: 220 €</p>
+        <button class="add-to-cart">Забронировать билет</button>
+        <br><a href="rome.html">Подробнее о городе</a>
+    </div>
+</div>
+
+<div class="cart">
+    <h2> Мои бронирования</h2>
+    <div id="cart-items"></div>
+    <div class="total-price" id="total-price">Общая сумма: 0 €</div>
+    <button class="checkout-btn" id="checkout-btn">Оформить бронь</button>
+</div>
+
+<hr>
+
+<footer>
+    <p>&copy; Все права защищены</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
